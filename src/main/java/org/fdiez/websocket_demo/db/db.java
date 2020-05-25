@@ -1,24 +1,30 @@
 package org.fdiez.websocket_demo.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import org.fdiez.websocket_demo.model.Game;
+
 import java.sql.SQLException;
-import java.sql.Statement;
 
  public class db {
 
     public static void test(String mess) throws SQLException {
-        Connection con;
+        //database tests
 
-        con = DriverManager.getConnection("jdbc:mysql://localhost/dev_db","root","admin");
+        /*Connection con;
+        con = DriverManager.getConnection("jdbc:mysql://localhost/dev_db","root","root");
         Statement stmt=con.createStatement();
-        ResultSet rs = stmt.executeQuery("Show tables");
+       ResultSet rs = stmt.executeQuery("Show tables");
         System.out.println("Tables in the current database: ");
         while(rs.next()) {
-            System.out.print(rs.getString(1));
+            System.out.print(rs.getString());
             System.out.println();
         }
+        boolean t = stmt.execute("INSERT INTO test () VALUES();");*/
+
+        //class tests
+
+        Game g = new Game();
+        g.setPlayer("mefla7_1", 1);
+        g.setPlayer("mefla7_2", 2);
     }
 
 }
