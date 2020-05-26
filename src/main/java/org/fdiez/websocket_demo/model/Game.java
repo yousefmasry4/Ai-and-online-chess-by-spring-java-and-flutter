@@ -21,23 +21,25 @@ public class Game {
     String test2;//to test if the arrayPlayer is null or not
     ResultSet rs;
     public Game() throws SQLException {
-        t = stmt.execute("INSERT INTO chessgame () VALUES();");
-        rs = stmt.executeQuery("SELECT * FROM chessgame;");
+//        int test = stmt.executeUpdate("INSERT INTO chessgame () VALUES();");
+//        System.out.println("test = " + test);
+        t = stmt.execute("INSERT INTO chess () VALUES();");
+        rs = stmt.executeQuery("SELECT id, arrayPlayer1, arrayPlayer2 FROM chess ORDER BY id DESC LIMIT 0, 1;");
         while(rs.next()) {
             ID = rs.getInt(1);
-            test1 = rs.getString(4);
-            test2 = rs.getString(5);
+           test1 = rs.getString(2);
+            test2 = rs.getString(3);
         }
         System.out.println("ID = " + ID);
 
         //This is used to initialize the arrayPlayer with space in order to be able to append movements of players later
         if(test1 == null)
         {
-            t = stmt.execute("UPDATE chessgame SET arrayPlayer1 = ' ' WHERE id = + "+ ID +";");
+            t = stmt.execute("UPDATE chess SET arrayPlayer1 = ' ' WHERE id = + "+ ID +";");
         }
         if(test2 == null)
         {
-            t = stmt.execute("UPDATE chessgame SET arrayPlayer2 = ' ' WHERE id = + "+ ID +";");
+            t = stmt.execute("UPDATE chess SET arrayPlayer2 = ' ' WHERE id = + "+ ID +";");
         }
         //database tests
 
@@ -63,11 +65,11 @@ public class Game {
         int gameID = getID();
         switch (player){
             case 1:
-                t = stmt.execute("UPDATE chessgame SET player1 = '"+ ID +"' WHERE id = + "+ gameID +";");
+                t = stmt.execute("UPDATE chess SET player1 = '"+ ID +"' WHERE id = + "+ gameID +";");
                 p.play(" test1", 1, gameID);
                 break;
             case 2:
-                t = stmt.execute("UPDATE chessgame SET player2 = '"+ ID +"' WHERE id = + "+ gameID +";");
+                t = stmt.execute("UPDATE chess SET player2 = '"+ ID +"' WHERE id = + "+ gameID +";");
                 p.play(" test2", 2, gameID);
                 break;
         }
@@ -88,10 +90,10 @@ public class Game {
             Movements.add(movement);
             switch (player){
                 case 1:
-                    t = stmt.execute("UPDATE chessgame SET arrayPLayer1 = CONCAT(arrayPLayer1, '" + movement + "') " +"WHERE id = " + gameID + ";");
+                    t = stmt.execute("UPDATE chess SET arrayPLayer1 = CONCAT(arrayPLayer1, '" + movement + "') " +"WHERE id = " + gameID + ";");
                     break;
                 case 2:
-                    t = stmt.execute("UPDATE chessgame SET arrayPLayer2 = CONCAT(arrayPLayer2, '" + movement + "') " +"WHERE id = " + gameID + ";");
+                    t = stmt.execute("UPDATE chess SET arrayPLayer2 = CONCAT(arrayPLayer2, '" + movement + "') " +"WHERE id = " + gameID + ";");
                     break;
             }
         }
