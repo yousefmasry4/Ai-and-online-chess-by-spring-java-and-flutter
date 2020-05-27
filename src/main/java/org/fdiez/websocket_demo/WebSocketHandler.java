@@ -8,13 +8,27 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class WebSocketHandler extends AbstractWebSocketHandler {
-
+    List<WebSocketSession> list=new ArrayList<WebSocketSession>();
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
+        if(!list.contains(session))
+        list.add(session);
+
         System.out.println("New Simple Message Received");
-        session.sendMessage(message);
+        list.forEach((e)->{
+            try {
+                if(e.isOpen() && e != session)
+                e.sendMessage(message);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        });
         db.test(message.toString());
     }
 

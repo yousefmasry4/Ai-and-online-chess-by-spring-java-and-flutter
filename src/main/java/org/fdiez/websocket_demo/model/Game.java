@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Game {
     private int ID;
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost/dev_db","root","root");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost/dev_db","root","admin");
     Statement stmt = con.createStatement();
     boolean t;//to accept the return of the sqlQuery
     String test1;//to test if the arrayPlayer is null or not
