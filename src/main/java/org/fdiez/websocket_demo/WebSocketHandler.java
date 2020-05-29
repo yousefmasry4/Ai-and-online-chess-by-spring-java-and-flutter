@@ -16,11 +16,13 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         var command=message.toString().split(",");
         String game_id;
+
         switch (command[0]){
             case "get_id":
                 if(session.isOpen()){
                     session.sendMessage(
                             //TODO: send the new row id ely hwa id el game ely hyt3ml fyh save le data el game
+                            new TextMessage("")
                     );
                 }
                 session.close(CloseStatus.GOING_AWAY);
@@ -40,10 +42,10 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
                     String player1_id;
                     get_seession.put(session.getId(), session);
                     WebSocketSession player1_session = get_seession.get(player1_id);
-                    session.sendMessage("gogogo");
-                    player1_session.sendMessage("gogogo");
+                    session.sendMessage(new TextMessage("gogogo"));
+                    player1_session.sendMessage(new TextMessage("gogogo"));
                 }else{
-                    session.sendMessage("false");
+                    session.sendMessage(new TextMessage("false"));
                 }
                 break;
             case "set_player1":
