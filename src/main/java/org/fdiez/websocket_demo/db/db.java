@@ -1,6 +1,6 @@
 package org.fdiez.websocket_demo.db;
 
-import org.fdiez.websocket_demo.model.Game;
+import org.fdiez.websocket_demo.Game;
 
 import java.sql.SQLException;
 
