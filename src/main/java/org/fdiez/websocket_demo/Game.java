@@ -47,11 +47,7 @@ class GameHelper{
      //ignore
      player player2;
 
-    GameHelper(String id, player player1, player player2, player player21) {
-        this.id = id;
-        this.player1 = player1;
-        this.player2 = player2;
-    }
+
     GameHelper() throws SQLException {
         boolean t = Application.stmt.execute("INSERT INTO chess () VALUES();");
         ResultSet rs2 = Application.stmt.executeQuery("SELECT id, player1, player2 FROM chess ORDER BY id DESC LIMIT 0, 1;");
